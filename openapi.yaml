@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: Nebula Oasi API
+  description: API REST per moodboard, sceneggiature, pitch, temi e feedback creativi.
+  version: 1.0.0
+
+servers:
+  - url: https://takypirina.github.io/nebula-oasi-api
+
+paths:
+  /moodboard/generate:
+    post:
+      summary: Genera un moodboard creativo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                theme:
+                  type: string
+                style:
+                  type: string
+      responses:
+        '200':
+          description: Moodboard generato con successo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    type: array
+                    items:
+                      type: string
+
+  /script/develop:
+    post:
+      summary: Sviluppa una sceneggiatura
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                concept:
+                  type: string
+                tone:
+                  type: string
+      responses:
+        '200':
+          description: Sceneggiatura generata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  script:
+                    type: string
+
+  /pitch/create:
+    post:
+      summary: Crea un pitch creativo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                audience:
+                  type: string
+      responses:
+        '200':
+          description: Pitch generato
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pitch:
+                    type: string
+
+  /themes:
+    get:
+      summary: Elenco dei temi disponibili
+      responses:
+        '200':
+          description: Lista temi
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  themes:
+                    type: array
+                    items:
+                      type: string
+
+  /feedback/iterate:
+    post:
+      summary: Itera feedback creativo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input_text:
+                  type: string
+                feedback_type:
+                  type: string
+      responses:
+        '200':
+          description: Feedback applicato
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  revised_text:
+                    type: string
